@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudo Enfermagem - Seu Assistente de Estudos</title>
+    <link rel="stylesheet" href="estudo-enfermagem.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Menu Lateral -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-sidebar">
+                <i class="fas fa-heartbeat"></i>
+                <span>Estudo Enfermagem</span>
+            </div>
+            <button class="close-sidebar" id="closeSidebar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <button class="sidebar-btn active" data-section="dashboard">
+                <i class="fas fa-home"></i>
+                <span>Início</span>
+            </button>
+            <button class="sidebar-btn" data-section="flashcards">
+                <i class="fas fa-layer-group"></i>
+                <span>Flashcards</span>
+            </button>
+            <button class="sidebar-btn" data-section="galeria">
+                <i class="fas fa-images"></i>
+                <span>Galeria</span>
+            </button>
+            <button class="sidebar-btn" data-section="calendario">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Calendário</span>
+            </button>
+            <button class="sidebar-btn" data-section="ia">
+                <i class="fas fa-robot"></i>
+                <span>IA Assistente</span>
+            </button>
+            <button class="sidebar-btn" data-section="timer">
+                <i class="fas fa-clock"></i>
+                <span>Timer</span>
+            </button>
+            <button class="sidebar-btn" data-section="anotacoes">
+                <i class="fas fa-sticky-note"></i>
+                <span>Anotações</span>
+            </button>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <button class="theme-toggle-sidebar" id="themeToggleSidebar">
+                <i class="fas fa-moon"></i>
+                <span>Modo Escuro</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="logo">
+                <i class="fas fa-heartbeat"></i>
+                <span>Estudo Enfermagem</span>
+            </div>
+            <nav class="nav nav-desktop">
+                <button class="nav-btn active" data-section="dashboard">
+                    <i class="fas fa-home"></i>
+                    <span>Início</span>
+                </button>
+                <button class="nav-btn" data-section="flashcards">
+                    <i class="fas fa-layer-group"></i>
+                    <span>Flashcards</span>
+                </button>
+                <button class="nav-btn" data-section="galeria">
+                    <i class="fas fa-images"></i>
+                    <span>Galeria</span>
+                </button>
+                <button class="nav-btn" data-section="calendario">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Calendário</span>
+                </button>
+                <button class="nav-btn" data-section="ia">
+                    <i class="fas fa-robot"></i>
+                    <span>IA Assistente</span>
+                </button>
+                <button class="nav-btn" data-section="timer">
+                    <i class="fas fa-clock"></i>
+                    <span>Timer</span>
+                </button>
+                <button class="nav-btn" data-section="anotacoes">
+                    <i class="fas fa-sticky-note"></i>
+                    <span>Anotações</span>
+                </button>
+            </nav>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Parallax Background -->
+    <div class="parallax-bg" id="parallaxBg"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Dashboard Section -->
+            <section class="section active" id="dashboard">
+                <h1 class="section-title">Painel de Estudos</h1>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-layer-group"></i>
+                        <div class="stat-info">
+                            <h3 id="totalFlashcards">0</h3>
+                            <p>Flashcards</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-images"></i>
+                        <div class="stat-info">
+                            <h3 id="totalImages">0</h3>
+                            <p>Imagens Salvas</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-calendar-check"></i>
+                        <div class="stat-info">
+                            <h3 id="totalEvents">0</h3>
+                            <p>Eventos</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-clock"></i>
+                        <div class="stat-info">
+                            <h3 id="studyTime">0h</h3>
+                            <p>Tempo de Estudo</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <h2>Ações Rápidas</h2>
+                    <div class="action-buttons">
+                        <button class="action-btn" onclick="navigateTo('flashcards')">
+                            <i class="fas fa-plus"></i>
+                            Novo Flashcard
+                        </button>
+                        <button class="action-btn" onclick="navigateTo('galeria')">
+                            <i class="fas fa-upload"></i>
+                            Adicionar Imagem
+                        </button>
+                        <button class="action-btn" onclick="navigateTo('calendario')">
+                            <i class="fas fa-calendar-plus"></i>
+                            Agendar Prova
+                        </button>
+                        <button class="action-btn" onclick="navigateTo('ia')">
+                            <i class="fas fa-question-circle"></i>
+                            Tirar Dúvida
+                        </button>
+                    </div>
+                </div>
+
+                <div class="upcoming-events">
+                    <h2>Próximas Provas</h2>
+                    <div id="upcomingEventsList" class="events-list"></div>
+                </div>
+            </section>
+
+            <!-- Flashcards Section -->
+            <section class="section" id="flashcards">
+                <h1 class="section-title">Flashcards de Estudo</h1>
+                
+                <div class="flashcard-controls">
+                    <button class="btn-primary" id="addFlashcardBtn">
+                        <i class="fas fa-plus"></i> Criar Flashcard
+                    </button>
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchFlashcard" placeholder="Buscar flashcards...">
+                    </div>
+                </div>
+
+                <div class="flashcard-grid" id="flashcardGrid"></div>
+
+                <!-- Modal Criar Flashcard -->
+                <div class="modal" id="flashcardModal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Criar Flashcard</h2>
+                            <button class="close-modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Pergunta/Frente</label>
+                                <textarea id="flashcardFront" rows="3" placeholder="Digite a pergunta..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Resposta/Verso</label>
+                                <textarea id="flashcardBack" rows="3" placeholder="Digite a resposta..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Categoria</label>
+                                <select id="flashcardCategory">
+                                    <option value="anatomia">Anatomia</option>
+                                    <option value="farmacologia">Farmacologia</option>
+                                    <option value="procedimentos">Procedimentos</option>
+                                    <option value="patologia">Patologia</option>
+                                    <option value="outros">Outros</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn-secondary cancel-modal">Cancelar</button>
+                            <button class="btn-primary" id="saveFlashcard">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Galeria Section -->
+            <section class="section" id="galeria">
+                <h1 class="section-title">Galeria de Imagens</h1>
+                
+                <div class="gallery-controls">
+                    <button class="btn-primary" id="addImageBtn">
+                        <i class="fas fa-upload"></i> Adicionar Imagem
+                    </button>
+                    <input type="file" id="imageInput" accept="image/*" style="display: none;" multiple>
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchImage" placeholder="Buscar imagens...">
+                    </div>
+                </div>
+
+                <div class="gallery-grid" id="galleryGrid"></div>
+
+                <!-- Modal Visualizar Imagem -->
+                <div class="modal" id="imageModal">
+                    <div class="modal-content modal-large">
+                        <div class="modal-header">
+                            <h2 id="imageModalTitle">Imagem</h2>
+                            <button class="close-modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <img id="modalImage" src="" alt="">
+                            <div class="form-group">
+                                <label>Descrição</label>
+                                <textarea id="imageDescription" rows="2" placeholder="Adicione uma descrição..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Tags</label>
+                                <input type="text" id="imageTags" placeholder="Ex: anatomia, coração, sistema cardiovascular">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn-danger" id="deleteImage">Excluir</button>
+                            <button class="btn-primary" id="saveImageInfo">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Calendário Section -->
+            <section class="section" id="calendario">
+                <h1 class="section-title">Calendário de Provas</h1>
+                
+                <div class="calendar-controls">
+                    <button class="btn-primary" id="addEventBtn">
+                        <i class="fas fa-plus"></i> Adicionar Evento
+                    </button>
+                    <div class="calendar-nav">
+                        <button id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+                        <h2 id="currentMonth"></h2>
+                        <button id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="calendar-container">
+                    <div class="calendar" id="calendar"></div>
+                    <div class="events-sidebar">
+                        <h3>Eventos do Mês</h3>
+                        <div id="eventsList"></div>
+                    </div>
+                </div>
+
+                <!-- Modal Adicionar Evento -->
+                <div class="modal" id="eventModal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Adicionar Evento</h2>
+                            <button class="close-modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Título</label>
+                                <input type="text" id="eventTitle" placeholder="Ex: Prova de Anatomia">
+                            </div>
+                            <div class="form-group">
+                                <label>Data</label>
+                                <input type="date" id="eventDate">
+                            </div>
+                            <div class="form-group">
+                                <label>Hora</label>
+                                <input type="time" id="eventTime">
+                            </div>
+                            <div class="form-group">
+                                <label>Tipo</label>
+                                <select id="eventType">
+                                    <option value="prova">Prova</option>
+                                    <option value="trabalho">Trabalho</option>
+                                    <option value="aula">Aula Importante</option>
+                                    <option value="estudo">Sessão de Estudo</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Descrição</label>
+                                <textarea id="eventDescription" rows="3" placeholder="Detalhes do evento..."></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn-secondary cancel-modal">Cancelar</button>
+                            <button class="btn-primary" id="saveEvent">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Timer Section -->
+            <section class="section" id="timer">
+                <h1 class="section-title">Temporizador de Estudos</h1>
+                
+                <div class="timer-container">
+                    <div class="clock-widget">
+                        <h2>Relógio</h2>
+                        <div class="clock-display" id="clockDisplay">00:00:00</div>
+                        <div class="date-display" id="dateDisplay"></div>
+                    </div>
+
+                    <div class="pomodoro-widget">
+                        <h2>Pomodoro Timer</h2>
+                        <div class="pomodoro-display" id="pomodoroDisplay">25:00</div>
+                        <div class="pomodoro-status" id="pomodoroStatus">Pronto para começar</div>
+                        
+                        <div class="pomodoro-controls">
+                            <button class="btn-primary" id="startPomodoro">
+                                <i class="fas fa-play"></i> Iniciar
+                            </button>
+                            <button class="btn-secondary" id="pausePomodoro">
+                                <i class="fas fa-pause"></i> Pausar
+                            </button>
+                            <button class="btn-secondary" id="resetPomodoro">
+                                <i class="fas fa-redo"></i> Resetar
+                            </button>
+                        </div>
+
+                        <div class="pomodoro-settings">
+                            <div class="setting-group">
+                                <label>Tempo de Estudo (min)</label>
+                                <input type="number" id="studyTime" value="25" min="1" max="60">
+                            </div>
+                            <div class="setting-group">
+                                <label>Tempo de Pausa (min)</label>
+                                <input type="number" id="breakTime" value="5" min="1" max="30">
+                            </div>
+                        </div>
+
+                        <div class="pomodoro-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Sessões Hoje:</span>
+                                <span class="stat-value" id="sessionsToday">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Total de Sessões:</span>
+                                <span class="stat-value" id="totalSessions">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stopwatch-widget">
+                        <h2>Cronômetro</h2>
+                        <div class="stopwatch-display" id="stopwatchDisplay">00:00:00</div>
+                        
+                        <div class="stopwatch-controls">
+                            <button class="btn-primary" id="startStopwatch">
+                                <i class="fas fa-play"></i> Iniciar
+                            </button>
+                            <button class="btn-secondary" id="pauseStopwatch">
+                                <i class="fas fa-pause"></i> Pausar
+                            </button>
+                            <button class="btn-secondary" id="resetStopwatch">
+                                <i class="fas fa-redo"></i> Resetar
+                            </button>
+                            <button class="btn-secondary" id="lapStopwatch">
+                                <i class="fas fa-flag"></i> Volta
+                            </button>
+                        </div>
+
+                        <div class="laps-container" id="lapsContainer"></div>
+                    </div>
+                </div>
+
+                <div class="study-history">
+                    <h2>Histórico de Estudos</h2>
+                    <div id="studyHistoryList"></div>
+                </div>
+            </section>
+
+            <!-- Anotações Section -->
+            <section class="section" id="anotacoes">
+                <h1 class="section-title">Minhas Anotações</h1>
+                
+                <div class="notes-controls">
+                    <button class="btn-primary" id="addNoteBtn">
+                        <i class="fas fa-plus"></i> Nova Anotação
+                    </button>
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchNotes" placeholder="Buscar anotações...">
+                    </div>
+                    <select id="filterNotes" class="filter-select">
+                        <option value="all">Todas</option>
+                        <option value="anatomia">Anatomia</option>
+                        <option value="farmacologia">Farmacologia</option>
+                        <option value="procedimentos">Procedimentos</option>
+                        <option value="patologia">Patologia</option>
+                        <option value="outros">Outros</option>
+                    </select>
+                </div>
+
+                <div class="notes-grid" id="notesGrid"></div>
+
+                <!-- Modal Criar/Editar Anotação -->
+                <div class="modal" id="noteModal">
+                    <div class="modal-content modal-large">
+                        <div class="modal-header">
+                            <h2 id="noteModalTitle">Nova Anotação</h2>
+                            <button class="close-modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Título</label>
+                                <input type="text" id="noteTitle" placeholder="Digite o título...">
+                            </div>
+                            <div class="form-group">
+                                <label>Categoria</label>
+                                <select id="noteCategory">
+                                    <option value="anatomia">Anatomia</option>
+                                    <option value="farmacologia">Farmacologia</option>
+                                    <option value="procedimentos">Procedimentos</option>
+                                    <option value="patologia">Patologia</option>
+                                    <option value="outros">Outros</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Conteúdo</label>
+                                <textarea id="noteContent" rows="15" placeholder="Digite suas anotações aqui..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" id="noteFavorite">
+                                    Marcar como favorito ⭐
+                                </label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn-danger" id="deleteNote" style="margin-right: auto;">Excluir</button>
+                            <button class="btn-secondary cancel-modal">Cancelar</button>
+                            <button class="btn-primary" id="saveNote">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- IA Assistente Section -->
+            <section class="section" id="ia">
+                <h1 class="section-title">IA Assistente de Enfermagem</h1>
+                
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="chat-message bot">
+                            <div class="message-avatar">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="message-content">
+                                <p>💙 Olá! Sou sua assistente de estudos de enfermagem!</p>
+                                <p style="margin-top: 10px;">Posso ajudar com:</p>
+                                <p style="margin-top: 5px;">🫀 Cardiovascular • 🫁 Respiratório • 🧠 Neurológico<br>
+                                💊 Medicação e Cálculos • 🚨 Emergências • 🩺 Procedimentos<br>
+                                👶 Materno-Infantil • 👴 Geriatria • 🦠 E muito mais!</p>
+                                <p style="margin-top: 10px;"><strong>Faça sua pergunta!</strong> 😊</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input-container">
+                        <textarea id="chatInput" placeholder="Digite sua dúvida..." rows="2"></textarea>
+                        <button class="btn-primary" id="sendMessage">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <div class="quick-questions">
+                        <p>Perguntas rápidas:</p>
+                        <button class="quick-q" data-q="Quais são os sinais vitais e valores normais?">Sinais Vitais</button>
+                        <button class="quick-q" data-q="Como fazer RCP em adultos?">RCP</button>
+                        <button class="quick-q" data-q="Explique sobre administração de medicamentos">Medicação</button>
+                        <button class="quick-q" data-q="O que é sepse e como identificar?">Sepse</button>
+                        <button class="quick-q" data-q="Como fazer sondagem vesical?">Sondagem</button>
+                        <button class="quick-q" data-q="Tipos de curativos e indicações">Curativos</button>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script src="estudo-enfermagem.js"></script>
+</body>
+</html>
